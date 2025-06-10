@@ -1,0 +1,17 @@
+{
+  "name": "first_project_understand",
+  "version": "1.0.0",
+  "description": "a basic project to understand the backend completly",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "javascript",
+    "nodejs",
+    "data",
+    "chai"
+  ],
+  "author": "Arjun Sharma",
+  "license": "ISC"
+}
