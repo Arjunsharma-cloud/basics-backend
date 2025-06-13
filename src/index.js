@@ -9,7 +9,15 @@ dotenv.config(); // now we can use .env
 
 
 
-connect_DB();
+connect_DB() 
+.then(()=>{
+    app.listen(process.env.PORT || 8000 , ()=>{
+        console.log("PORT IS LISTENING!!! ");
+    })
+})
+.catch((error)=>{
+    console.log("error in connecting DB" , error);
+})   
 //here a whole function is experted from ./db/index.js 
 //it is the same functiion that is written in the end 
 
