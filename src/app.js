@@ -17,4 +17,11 @@ app.use(express.urlencoded({
 app.use(express.static("public")); // it will store all the files , photos in public folder
 app.use(cookieParser()); 
 
+
+// routes
+import userroutes from "./routes.user.routes.js";
+
+//routes declarations
+app.use("/api/v1/users" , userroutes);
+
 export default app; // or we can write export { app };

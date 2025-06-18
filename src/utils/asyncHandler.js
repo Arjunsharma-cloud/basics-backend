@@ -1,5 +1,5 @@
 const asyncHandler = (fn)=>{
-    (req , res , next)=>{
+    return (req , res , next)=>{
         // catch is used when we want a code to occur if it failed
         //reject is used when we want to force a specif error message or code 
         // catch will just catch the error but reject is in more backend and we can typeour own error
