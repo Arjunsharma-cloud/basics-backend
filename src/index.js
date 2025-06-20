@@ -2,16 +2,16 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import express from "express";
 import connect_DB from "./db/index.js";
+import app from "./app.js"
 
-const app = express();
-dotenv.config(); // now we can use .env 
+// const app = express();
 
 
 
 
 connect_DB() 
 .then(()=>{
-    app.listen(process.env.PORT || 8000 , ()=>{
+    app.listen(process.env.PORT || 8000  , ()=>{
         console.log("PORT IS LISTENING!!!" , process.env.PORT);
     })
 })

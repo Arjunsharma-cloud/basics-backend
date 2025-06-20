@@ -1,8 +1,11 @@
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
+import dotenv from "dotenv";
+
 
 const app = express();
+dotenv.config(); // now we can use .env 
 
 app.use(cors({
     origin : process.env.CORS_ORIGIN,
@@ -19,9 +22,9 @@ app.use(cookieParser());
 
 
 // routes
-import userroutes from "./routes.user.routes.js";
+import userrouter from "./routes/user.routes.js";
 
 //routes declarations
-app.use("/api/v1/users" , userroutes);
+app.use("/api/v1/users" , userrouter);
 
 export default app; // or we can write export { app };
