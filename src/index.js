@@ -11,13 +11,15 @@ import app from "./app.js"
 
 connect_DB() 
 .then(()=>{
-    app.listen(process.env.PORT || 8000  , ()=>{
+    app.listen(process.env.PORT , ()=>{
         console.log("PORT IS LISTENING!!!" , process.env.PORT);
     })
 })
 .catch((error)=>{
     console.log("error in connecting DB" ,error);
 })   
+console.log(process.env.PORT)
+
 //here a whole function is experted from ./db/index.js 
 //it is the same functiion that is written in the end 
 
