@@ -29,7 +29,7 @@ app.use("/api/v1/users" , userrouter);
 
 app.use((err, req, res, next) => {
   console.error("🔥 Error caught by global handler:", err.message);
-  res.status(err.statusCode || 500).json({
+  res.status(err.statusCode || 400).json({
     success: false,
     message: err.message || "Internal Server Error",
   });
