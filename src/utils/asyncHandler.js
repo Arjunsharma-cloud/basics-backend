@@ -8,7 +8,7 @@ const asyncHandler = (fn)=>{
         Promise.resolve(fn(req , res , next))
         .then(()=>console.log("ASYNCHANDLER WORKED"))
         .catch((err) => {
-            console.log("somethingfailed");
+            console.log("***************************THIS IS THE ERROR********************************** :" ,err);
             next(err);
         })
     }

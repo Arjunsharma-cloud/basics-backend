@@ -47,8 +47,9 @@ const registeruser = asyncHandler(async (req , res)=>{
    }
 
    // checking for the avatar and cover image 
-   const avatarlocalPath = req.files?.avatar[0]?.path;
-   const coverImagelocalPath = req.files?.avatar[0]?.path;
+   const avatarlocalPath = req.files?.avatar[0]?.path; 
+   const coverImagelocalPath = req.files?.coverImage[0]?.path;
+   console.log(avatarlocalPath);
 
    if(!avatarlocalPath){
     throw new ApiError(403 , "avatar field is required");
@@ -59,11 +60,12 @@ const registeruser = asyncHandler(async (req , res)=>{
    }
 
    //upload on cloudinary
-   const avatar = await uploadoncloudinary(avatarlocalPath);
-   const coverImage = await uploadoncloudinary(coverImagelocalPath);
-
+   // error in uploading
+   const avatar = await uploadoncloudinary(avatarlocalPath);// here is the errror i think
+   const coverImage = await uploadoncloudinary(coverImagelocalPath);// here also
+   console.log(avatar);
    if(!avatar){
-    throw new ApiError(405 , "avatar file is required")
+    throw new ApiError(405 , "avatar file is required but path is defined")
    }
 
    //create user object and entry in db

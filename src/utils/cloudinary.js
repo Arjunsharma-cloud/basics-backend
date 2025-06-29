@@ -8,19 +8,25 @@ cloudinary.config({
     api_secret: process.env.CLOUDINARY_API_SECRET, // Click 'View API Keys' above to copy your API secret
 });
 
-const uploadoncloudinary = async (localfilepath)=>{
+const uploadoncloudinary = async (localfilepath) => {
     try {
         //uploading the file on cloudinary
-        const response = await cloudinary.uploader.upload(localfilepath , {
-            resource_type:"auto"
-        })
-        console.log("file has been uplaoded succesfully" , response.url);
+        const response = await cloudinary.uploader.upload(localfilepath, {
+            resource_type: "auto",
+        });
+        console.log("file has been uplaoded succesfully", response.url);
         return response;
     } catch (error) {
-        fs.unlink( localfilepath);
+        fs.unlink(localfilepath, (err) => {
+            console.log(localfilepath)
+            if (err) {
+                console.error("❌ Error deleting local file:", err);
+            } else {
+                console.log("🗑️ Temp file deleted:", localfilepath);
+            }
+        })
         return null;
     }
-}
+};
 
-
-export {uploadoncloudinary}
+export { uploadoncloudinary };
