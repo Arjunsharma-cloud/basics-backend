@@ -3,6 +3,7 @@ import {ApiError} from "../utils/ApiError.js"
 import { User } from "../models/users.model.js";
 import {uploadoncloudinary} from "../utils/cloudinary.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import path from "path";
 
 console.log(12)
 const registeruser = asyncHandler(async (req , res)=>{
@@ -63,7 +64,7 @@ const registeruser = asyncHandler(async (req , res)=>{
    // error in uploading
    const avatar = await uploadoncloudinary(avatarlocalPath);// here is the errror i think
    const coverImage = await uploadoncloudinary(coverImagelocalPath);// here also
-   console.log(avatar);
+   console.log( "Avatar : " , avatar);
    if(!avatar){
     throw new ApiError(405 , "avatar file is required but path is defined")
    }
@@ -78,12 +79,20 @@ const registeruser = asyncHandler(async (req , res)=>{
     username: username.toLowerCase()
    })
 
+   console.log(user);
    //check if user is  saved in the daatbase while registering and 
    // removing password and refreshToken
 
-   const createUser = await User.findById(user._id).select(" -password -refreshToken");
+   let createUser;
 
-   if(createUser){
+   try {
+        createUser = await User.findById(user._id).select(" -password -refreshToken");
+    
+   } catch (error) {
+    console.log(error);
+   }
+
+   if(!createUser){
     throw new ApiError(500 , "something went wrong during registering");
    }
 
